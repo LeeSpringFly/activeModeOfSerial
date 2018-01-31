@@ -1,0 +1,34 @@
+#+BEGIN_SRC plantuml :file ./uml.png
+
+abstract SerialPort {
+   + void connect(SerialPortInfo serialPortInfo)
+   + void close() 
+   + void write(byte[] msg)
+   + void write(List<byte[]> msgArray)
+   + boolean isConnected() 
+   + abstract read(byte[] command)
+}
+
+interface SensorCommunicationActiveModeOfSerialService {
+   + void start(SerialPortInfo, serialPortInfo, int timer)
+   + void close()
+   + void restart(SerialPortInfo, serialPortInfo, int timer))
+}
+
+class SensorCommunicationActiveModeOfSerialServiceImpl extends SerialPort implements SensorCommunicationActiveModeOfSerialService {
+   - ScheduledExecutorService service 
+}
+
+interface SensorCommunicationPassiveModeOfSerialService {
+   + void start()
+}
+
+class SensorCommunicationPassiveModeOfSerialServiceImpl extends SerialPort implements SensorCommunicationPassiveModeOfSerialService {
+   - write(byte[] command)
+}
+
+#+END_SRC
+
+#+RESULTS:
+[[file:./uml.png]]
+
